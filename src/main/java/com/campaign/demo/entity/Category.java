@@ -21,9 +21,7 @@ public class Category implements Serializable {
 	@Column(name = "name")
 	private String name;
 
-	public Category(Integer categoryId, String name) {
-		this.categoryId = categoryId;
-		this.name = name;
+	public Category() {
 	}
 
 	public Integer getCategoryId() {
