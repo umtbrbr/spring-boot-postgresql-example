@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CampaignServiceTest {
+public class CampaignServiceImplTest {
 
     @Mock
     CampaignRepository campaignRepository;
@@ -27,19 +27,19 @@ public class CampaignServiceTest {
     @Mock
     private Campaign campaign;
 
-    CampaignService service;
+    CampaignServiceImpl serviceImpl;
 
     @Before
     public void setUp() {
-        service = new CampaignService();
-        service.setCampaignRepository(campaignRepository);
+        serviceImpl = new CampaignServiceImpl();
+        serviceImpl.setCampaignRepository(campaignRepository);
     }
 
     @Test
     public void shouldReturnCampaignsWhenGetCampaignsIsCalled() {
         when(campaignRepository.findAll()).thenReturn(generateMockCampaigns());
 
-        List<Campaign> expectedCampaigns = service.getCampaigns();
+        List<Campaign> expectedCampaigns = serviceImpl.getCampaigns();
         Optional<Campaign> result = expectedCampaigns.stream().findFirst();
 
         assertTrue(result.isPresent());
@@ -56,14 +56,14 @@ public class CampaignServiceTest {
     @Test
     public void shouldReturnCampaignWhenCreateCampaignIsCalled() {
         when(campaignRepository.save(campaign)).thenReturn(campaign);
-        Campaign savedCampaign = service.saveCampaign(campaign);
+        Campaign savedCampaign = serviceImpl.saveCampaign(campaign);
         assertThat(savedCampaign, is(equalTo(campaign)));
     }
 
     @Test
     public void shouldCallDeleteByIdMethodOfCampaignRepositoryWhenDeleteCampaignIsCalled() {
         doNothing().when(campaignRepository).deleteById(1);
-        service.deleteCampaign(1);
+        serviceImpl.deleteCampaign(1);
         verify(campaignRepository, times(1)).deleteById(1);
     }
 
