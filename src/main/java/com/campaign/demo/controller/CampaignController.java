@@ -55,6 +55,15 @@ public class CampaignController {
         ResponseEntity<Campaign> response = new ResponseEntity<>(updatedCampaign, HttpStatus.OK);
 
         return response;
+    }
 
+    @DeleteMapping(value = "demo/campaign/delete")
+    public ResponseEntity<Campaign> deleteCampaign(@RequestParam("id") Integer campaignId) {
+        Optional<Campaign> campaign = campaignService.getCampaign(campaignId);
+        campaign.orElseThrow(() -> new ResourceNotFoundException("Campaign", "id", campaignId));
+
+        campaignService.deleteCampaign(campaignId);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

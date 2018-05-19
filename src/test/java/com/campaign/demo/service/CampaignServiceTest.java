@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CampaignServiceTest {
@@ -58,6 +58,13 @@ public class CampaignServiceTest {
         when(campaignRepository.save(campaign)).thenReturn(campaign);
         Campaign savedCampaign = service.saveCampaign(campaign);
         assertThat(savedCampaign, is(equalTo(campaign)));
+    }
+
+    @Test
+    public void shouldCallDeleteByIdMethodOfCampaignRepositoryWhenDeleteCampaignIsCalled() {
+        doNothing().when(campaignRepository).deleteById(1);
+        service.deleteCampaign(1);
+        verify(campaignRepository, times(1)).deleteById(1);
     }
 
     private List<Campaign> generateMockCampaigns() {

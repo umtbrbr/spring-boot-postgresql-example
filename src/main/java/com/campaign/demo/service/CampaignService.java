@@ -30,4 +30,8 @@ public class CampaignService {
         return campaignRepository.save(campaign);
     }
 
+    public void deleteCampaign(Integer id) {
+        campaignRepository.deleteById(id);
+    }
+
 }
