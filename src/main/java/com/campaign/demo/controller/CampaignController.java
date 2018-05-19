@@ -11,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/demo")
@@ -44,7 +46,7 @@ public class CampaignController {
     public ResponseEntity<Campaign> createCampaign(@Valid @RequestBody Campaign campaign, Errors errors) {
         maxDiscountValidator.validate(campaign, errors);
         if (errors.hasErrors()) {
-            return new ResponseEntity(new ErrorResponse(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), "Max discount is mandatory"),
+            return new ResponseEntity(new ErrorResponse(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), createErrorString(errors)),
                     HttpStatus.BAD_REQUEST);
         }
 
@@ -63,7 +65,7 @@ public class CampaignController {
 
         maxDiscountValidator.validate(campaignDetails, errors);
         if (errors.hasErrors()) {
-            return new ResponseEntity(new ErrorResponse(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), "Max discount is mandatory"),
+            return new ResponseEntity(new ErrorResponse(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), createErrorString(errors)),
                     HttpStatus.BAD_REQUEST);
         }
 
@@ -94,5 +96,9 @@ public class CampaignController {
         campaignService.deleteCampaign(campaignId);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    private String createErrorString(Errors errors) {
+        return errors.getAllErrors().stream().map(ObjectError::toString).collect(Collectors.joining(","));
     }
 }

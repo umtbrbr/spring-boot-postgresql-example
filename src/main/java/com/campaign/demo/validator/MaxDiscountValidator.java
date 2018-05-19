@@ -8,8 +8,12 @@ import org.springframework.validation.Errors;
 public class MaxDiscountValidator {
 
     public void validate(Campaign campaign, Errors errors) {
-        if ("RATE".equalsIgnoreCase(campaign.getDiscountType()) && campaign.getMaxDiscount() == null) {
-            errors.reject("Max discount is mandatory");
+        if ("RATE".equalsIgnoreCase(campaign.getDiscountType())) {
+            if (campaign.getMaxDiscount() == null) {
+                errors.reject("Maximum discount is mandatory");
+            } else if (campaign.getMaxDiscount() > 100) {
+                errors.reject("Maximum discount cannot more than 100");
+            }
         }
     }
 }

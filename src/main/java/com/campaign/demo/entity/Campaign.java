@@ -3,7 +3,6 @@ package com.campaign.demo.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -42,7 +41,6 @@ public class Campaign implements Serializable {
     @Column(name = "discount")
     private Integer discount;
 
-    @Max(value = 100, message = "Maximum discount cannot more than 100")
     @Column(name = "max_discount")
     private Integer maxDiscount;
 
