@@ -56,7 +56,7 @@ public class CampaignServiceTest {
     @Test
     public void shouldReturnCampaignWhenCreateCampaignIsCalled() {
         when(campaignRepository.save(campaign)).thenReturn(campaign);
-        Campaign savedCampaign = service.createCampaign(campaign);
+        Campaign savedCampaign = service.saveCampaign(campaign);
         assertThat(savedCampaign, is(equalTo(campaign)));
     }
 

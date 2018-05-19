@@ -1,17 +1,16 @@
 package com.campaign.demo.controller;
 
 import com.campaign.demo.entity.Campaign;
+import com.campaign.demo.error.ResourceNotFoundException;
 import com.campaign.demo.service.CampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CampaignController {
@@ -30,10 +29,32 @@ public class CampaignController {
 
     @PostMapping(value = "demo/campaign/create")
     public ResponseEntity<Campaign> createCampaign(@Valid @RequestBody Campaign campaign) {
-        Campaign createCampaign = campaignService.createCampaign(campaign);
+        Campaign createCampaign = campaignService.saveCampaign(campaign);
 
         ResponseEntity<Campaign> response = new ResponseEntity<>(createCampaign, HttpStatus.OK);
 
         return response;
+    }
+
+    @PutMapping(value = "demo/campaign/update")
+    public ResponseEntity<Campaign> updateCampaign(@RequestParam("id") Integer campaignId, @Valid @RequestBody Campaign campaignDetails) {
+        Optional<Campaign> campaign = campaignService.getCampaign(campaignId);
+        campaign.orElseThrow(() -> new ResourceNotFoundException("Campaign", "id", campaignId));
+
+        Campaign currentCampaign = campaign.get();
+        currentCampaign.setDiscountType(campaignDetails.getDiscountType());
+        currentCampaign.setDiscount(campaignDetails.getDiscount());
+        currentCampaign.setName(campaignDetails.getName());
+        currentCampaign.setMaxDiscount(campaignDetails.getMaxDiscount());
+        currentCampaign.setCampaignTypeName(campaignDetails.getCampaignTypeName());
+        currentCampaign.setCampaignType(campaignDetails.getCampaignType());
+        currentCampaign.setCampaignTypeId(campaignDetails.getCampaignTypeId());
+
+        Campaign updatedCampaign = campaignService.saveCampaign(currentCampaign);
+
+        ResponseEntity<Campaign> response = new ResponseEntity<>(updatedCampaign, HttpStatus.OK);
+
+        return response;
+
     }
 }
