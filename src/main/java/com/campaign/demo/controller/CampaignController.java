@@ -13,12 +13,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/demo")
 public class CampaignController {
 
     @Autowired
     private CampaignService campaignService;
 
-    @GetMapping(value = "demo/campaigns")
+    @GetMapping(value = "/campaigns")
     public ResponseEntity<List<Campaign>> getCampaigns() {
         List<Campaign> campaigns = campaignService.getCampaigns();
 
@@ -27,7 +28,7 @@ public class CampaignController {
         return response;
     }
 
-    @PostMapping(value = "demo/campaign/create")
+    @PostMapping(value = "/campaign/create")
     public ResponseEntity<Campaign> createCampaign(@Valid @RequestBody Campaign campaign) {
         Campaign createCampaign = campaignService.saveCampaign(campaign);
 
@@ -36,7 +37,7 @@ public class CampaignController {
         return response;
     }
 
-    @PutMapping(value = "demo/campaign/update")
+    @PutMapping(value = "/campaign/update")
     public ResponseEntity<Campaign> updateCampaign(@RequestParam("id") Integer campaignId, @Valid @RequestBody Campaign campaignDetails) {
         Optional<Campaign> campaign = campaignService.getCampaign(campaignId);
         campaign.orElseThrow(() -> new ResourceNotFoundException("Campaign", "id", campaignId));
@@ -57,7 +58,7 @@ public class CampaignController {
         return response;
     }
 
-    @DeleteMapping(value = "demo/campaign/delete")
+    @DeleteMapping(value = "/campaign/delete")
     public ResponseEntity<Campaign> deleteCampaign(@RequestParam("id") Integer campaignId) {
         Optional<Campaign> campaign = campaignService.getCampaign(campaignId);
         campaign.orElseThrow(() -> new ResourceNotFoundException("Campaign", "id", campaignId));
