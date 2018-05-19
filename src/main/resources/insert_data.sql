@@ -19,6 +19,6 @@ INSERT INTO demo.product (name, price, categoryId) VALUES
 -- Insert campaigns
 INSERT INTO demo.campaign (name, campaign_type, campaign_type_id, campaign_type_name, discount_type, discount, max_discount) VALUES
   ('Ucuz Iphone', 'PRODUCT', (SELECT id FROM demo.product WHERE demo.product.name = 'Apple Iphone 7 64 GB'), 'Apple Iphone 7 64 GB', 'RATE', 5, 100),
-  ('Mavi T-shirt İndirimde', 'PRODUCT', (SELECT id FROM demo.product WHERE demo.product.name = 'U.S. Polo Assn. Mavi T-shirt'), 'U.S. Polo Assn. Mavi T-shirt', 'PRICE', 50, 0),
+  ('Mavi T-shirt İndirimde', 'PRODUCT', (SELECT id FROM demo.product WHERE demo.product.name = 'U.S. Polo Assn. Mavi T-shirt'), 'U.S. Polo Assn. Mavi T-shirt', 'PRICE', 50, null),
   ('Kazaklar Daha Ucuz', 'CATEGORY', (SELECT id from demo.category WHERE name = 'KAZAK'), 'Kazak', 'RATE', 10, 30),
-  ('İndirimli Gömlekler', 'CATEGORY', (SELECT id from demo.category WHERE name = 'GÖMLEK'), 'Gömlek', 'PRICE', 20, 0);
+  ('İndirimli Gömlekler', 'CATEGORY', (SELECT id from demo.category WHERE name = 'GÖMLEK'), 'Gömlek', 'PRICE', 20, null);
