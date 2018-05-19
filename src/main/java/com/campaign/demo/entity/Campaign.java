@@ -1,9 +1,13 @@
 package com.campaign.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Campaign implements Serializable {
 
     private static final long serialVersionUID = -2753301445154585720L;
@@ -13,21 +17,27 @@ public class Campaign implements Serializable {
     @Column(name = "id")
     private Integer campaignId;
 
+    @NotNull(message = "Campaign name is mandatory")
     @Column(name = "name")
     private String name;
 
+    @NotNull(message = "Campaign type is mandatory")
     @Column(name = "campaign_type")
     private String campaignType;
 
+    @NotNull(message = "Campaign type id is mandatory")
     @Column(name = "campaign_type_id")
     private Integer campaignTypeId;
 
+    @NotNull(message = "Campaign type name is mandatory")
     @Column(name = "campaign_type_name")
     private String campaignTypeName;
 
+    @NotNull(message = "Discount type is mandatory")
     @Column(name = "discount_type")
     private String discountType;
 
+    @NotNull(message = "Discount is mandatory")
     @Column(name = "discount")
     private Integer discount;
 

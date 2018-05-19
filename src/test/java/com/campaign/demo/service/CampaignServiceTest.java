@@ -13,8 +13,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -22,6 +23,9 @@ public class CampaignServiceTest {
 
     @Mock
     CampaignRepository campaignRepository;
+
+    @Mock
+    private Campaign campaign;
 
     CampaignService service;
 
@@ -32,10 +36,10 @@ public class CampaignServiceTest {
     }
 
     @Test
-    public void testFindAll() {
+    public void shouldReturnCampaignsWhenGetCampaignsIsCalled() {
         when(campaignRepository.findAll()).thenReturn(generateMockCampaigns());
 
-        List<Campaign> expectedCampaigns = service.findAll();
+        List<Campaign> expectedCampaigns = service.getCampaigns();
         Optional<Campaign> result = expectedCampaigns.stream().findFirst();
 
         assertTrue(result.isPresent());
@@ -49,26 +53,30 @@ public class CampaignServiceTest {
         assertEquals(result.get().getMaxDiscount().intValue(), 100);
     }
 
+    @Test
+    public void shouldReturnCampaignWhenCreateCampaignIsCalled() {
+        when(campaignRepository.save(campaign)).thenReturn(campaign);
+        Campaign savedCampaign = service.createCampaign(campaign);
+        assertThat(savedCampaign, is(equalTo(campaign)));
+    }
+
     private List<Campaign> generateMockCampaigns() {
-        Campaign campaign1 = new Campaign();
-        campaign1.setCampaignId(1);
-        campaign1.setName("Ucuz Iphone");
-        campaign1.setCampaignType("PRODUCT");
-        campaign1.setCampaignTypeId(7);
-        campaign1.setCampaignTypeName("Apple Iphone 7 64 GB");
-        campaign1.setDiscountType("RATE");
-        campaign1.setDiscount(5);
-        campaign1.setMaxDiscount(100);
+        Campaign campaign = generateMockCampaign();
 
-        Campaign campaign2 = new Campaign();
-        campaign2.setCampaignId(3);
-        campaign2.setName("Kazaklar Daha Ucuz");
-        campaign2.setCampaignType("CATEGORY");
-        campaign2.setCampaignTypeId(4);
-        campaign2.setCampaignTypeName("Kazak");
-        campaign2.setDiscountType("RATE");
-        campaign2.setDiscount(20);
+        return Stream.of(campaign).collect(Collectors.toList());
+    }
 
-        return Stream.of(campaign1, campaign2).collect(Collectors.toList());
+    private Campaign generateMockCampaign() {
+        Campaign campaign = new Campaign();
+        campaign.setCampaignId(1);
+        campaign.setName("Ucuz Iphone");
+        campaign.setCampaignType("PRODUCT");
+        campaign.setCampaignTypeId(7);
+        campaign.setCampaignTypeName("Apple Iphone 7 64 GB");
+        campaign.setDiscountType("RATE");
+        campaign.setDiscount(5);
+        campaign.setMaxDiscount(100);
+
+        return campaign;
     }
 }

@@ -17,8 +17,12 @@ public class CampaignService {
         this.campaignRepository = campaignRepository;
     }
 
-    public List<Campaign> findAll() {
+    public List<Campaign> getCampaigns() {
         return campaignRepository.findAll();
+    }
+
+    public Campaign createCampaign(Campaign campaign) {
+        return campaignRepository.save(campaign);
     }
 
 }
