@@ -19,4 +19,10 @@ public class BigDecimalUtilTest {
         BigDecimal expected = BigDecimalUtil.getPercentageCalculation(new BigDecimal(200), new BigDecimal(20));
         assertEquals(expected.toString(), "160.00");
     }
+
+    @Test
+    public void testGetPercentage() {
+        BigDecimal expected = BigDecimalUtil.getPercentage(new BigDecimal(200), new BigDecimal(20));
+        assertEquals(expected.toString(), "40.00");
+    }
 }

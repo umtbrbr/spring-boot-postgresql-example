@@ -12,6 +12,12 @@ public class BigDecimalUtil {
         return rounded(amountOne.subtract(amountTwo));
     }
 
+    public static BigDecimal getPercentage(BigDecimal amount, BigDecimal percentage) {
+        BigDecimal result = amount.multiply(percentage);
+        result = result.divide(HUNDRED, ROUNDING_MODE);
+        return rounded(result);
+    }
+
     public static BigDecimal getPercentageCalculation(BigDecimal amount, BigDecimal percentage) {
         BigDecimal result = amount.multiply(percentage);
         result = result.divide(HUNDRED, ROUNDING_MODE);

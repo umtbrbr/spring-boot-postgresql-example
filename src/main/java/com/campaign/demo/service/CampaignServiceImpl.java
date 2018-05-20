@@ -37,4 +37,9 @@ public class CampaignServiceImpl implements CampaignService {
     public void deleteCampaign(Integer id) {
         campaignRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Campaign> findByCampaignTypeAndCampaignTypeId(String campaignType, Integer campaignTypeId) {
+        return campaignRepository.findByCampaignTypeAndCampaignTypeId(campaignType, campaignTypeId);
+    }
 }

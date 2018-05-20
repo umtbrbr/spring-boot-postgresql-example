@@ -14,4 +14,6 @@ public interface CampaignService {
     Campaign saveCampaign(Campaign campaign);
 
     void deleteCampaign(Integer id);
+
+    Optional<Campaign> findByCampaignTypeAndCampaignTypeId(String campaignType, Integer campaignTypeId);
 }
