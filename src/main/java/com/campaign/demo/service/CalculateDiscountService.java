@@ -2,6 +2,8 @@ package com.campaign.demo.service;
 
 import com.campaign.demo.entity.BasketItem;
 import com.campaign.demo.entity.Campaign;
+import com.campaign.demo.entity.CampaignType;
+import com.campaign.demo.entity.DiscountType;
 import com.campaign.demo.util.BigDecimalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +31,7 @@ public class CalculateDiscountService {
             BigDecimal categoryDiscountedPrice = null;
             BigDecimal productDiscountPrice = null;
 
-            Optional<Campaign> categoryCampaign = campaignService.findByCampaignTypeAndCampaignTypeId("CATEGORY", currentBasketItem.getCategoryId());
+            Optional<Campaign> categoryCampaign = campaignService.findByCampaignTypeAndCampaignTypeId(CampaignType.CATEGORY, currentBasketItem.getCategoryId());
             if (categoryCampaign.isPresent()) {
                 BasketItem maxPriceItem = findMaxPriceItemInBasket(items, currentBasketItem.getCategoryId());
                 if (maxPriceItem.equals(currentBasketItem)) {
@@ -37,7 +39,7 @@ public class CalculateDiscountService {
                 }
             }
 
-            Optional<Campaign> productCampaign = campaignService.findByCampaignTypeAndCampaignTypeId("PRODUCT", currentBasketItem.getProductId());
+            Optional<Campaign> productCampaign = campaignService.findByCampaignTypeAndCampaignTypeId(CampaignType.PRODUCT, currentBasketItem.getProductId());
             if (productCampaign.isPresent()) {
                 productDiscountPrice = getDiscountedPrice(currentBasketItem, productCampaign.get());
             }
@@ -57,7 +59,7 @@ public class CalculateDiscountService {
     }
 
     private BigDecimal getDiscountedPrice(BasketItem basketItem, Campaign campaign) {
-        if ("PRICE".equalsIgnoreCase(campaign.getDiscountType())) {
+        if (DiscountType.PRICE.equals(campaign.getDiscountType())) {
             return BigDecimal.valueOf(campaign.getDiscount());
         }
 

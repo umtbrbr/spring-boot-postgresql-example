@@ -1,6 +1,8 @@
 package com.campaign.demo.builder;
 
 import com.campaign.demo.entity.Campaign;
+import com.campaign.demo.entity.CampaignType;
+import com.campaign.demo.entity.DiscountType;
 
 public class CampaignBuilder {
 
@@ -20,7 +22,7 @@ public class CampaignBuilder {
         return this;
     }
 
-    public CampaignBuilder withCampaignType(String campaignType) {
+    public CampaignBuilder withCampaignType(CampaignType campaignType) {
         campaign.setCampaignType(campaignType);
         return this;
     }
@@ -35,7 +37,7 @@ public class CampaignBuilder {
         return this;
     }
 
-    public CampaignBuilder withDiscountType(String discountType) {
+    public CampaignBuilder withDiscountType(DiscountType discountType) {
         campaign.setDiscountType(discountType);
         return this;
     }

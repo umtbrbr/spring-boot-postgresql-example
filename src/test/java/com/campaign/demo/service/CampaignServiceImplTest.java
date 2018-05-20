@@ -1,6 +1,8 @@
 package com.campaign.demo.service;
 
 import com.campaign.demo.entity.Campaign;
+import com.campaign.demo.entity.CampaignType;
+import com.campaign.demo.entity.DiscountType;
 import com.campaign.demo.repository.CampaignRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,10 +47,10 @@ public class CampaignServiceImplTest {
         assertTrue(result.isPresent());
         assertEquals(result.get().getCampaignId().intValue(), 1);
         assertEquals(result.get().getName(), "Ucuz Iphone");
-        assertEquals(result.get().getCampaignType(), "PRODUCT");
+        assertEquals(result.get().getCampaignType().name(), "PRODUCT");
         assertEquals(result.get().getCampaignTypeId().intValue(), 7);
         assertEquals(result.get().getCampaignTypeName(), "Apple Iphone 7 64 GB");
-        assertEquals(result.get().getDiscountType(), "RATE");
+        assertEquals(result.get().getDiscountType().name(), "RATE");
         assertEquals(result.get().getDiscount().intValue(), 5);
         assertEquals(result.get().getMaxDiscount().intValue(), 100);
     }
@@ -77,10 +79,10 @@ public class CampaignServiceImplTest {
         Campaign campaign = new Campaign();
         campaign.setCampaignId(1);
         campaign.setName("Ucuz Iphone");
-        campaign.setCampaignType("PRODUCT");
+        campaign.setCampaignType(CampaignType.PRODUCT);
         campaign.setCampaignTypeId(7);
         campaign.setCampaignTypeName("Apple Iphone 7 64 GB");
-        campaign.setDiscountType("RATE");
+        campaign.setDiscountType(DiscountType.RATE);
         campaign.setDiscount(5);
         campaign.setMaxDiscount(100);
 

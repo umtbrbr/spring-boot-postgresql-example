@@ -4,6 +4,8 @@ import com.campaign.demo.builder.BasketItemBuilder;
 import com.campaign.demo.builder.CampaignBuilder;
 import com.campaign.demo.entity.BasketItem;
 import com.campaign.demo.entity.Campaign;
+import com.campaign.demo.entity.CampaignType;
+import com.campaign.demo.entity.DiscountType;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,9 +47,9 @@ public class CalculateDiscountServiceTest {
         List<BasketItem> items = Stream.of(item).collect(Collectors.toList());
 
         Campaign campaign = new CampaignBuilder()
-                .withCampaignType("PRODUCT")
+                .withCampaignType(CampaignType.PRODUCT)
                 .withCampaignTypeId(5)
-                .withDiscountType("PRICE")
+                .withDiscountType(DiscountType.PRICE)
                 .withDiscount(50)
                 .build();
 
@@ -58,7 +60,7 @@ public class CalculateDiscountServiceTest {
                 .withDiscountedPrice(BigDecimal.valueOf(50.99))
                 .build();
 
-        when(campaignService.findByCampaignTypeAndCampaignTypeId("PRODUCT", 5))
+        when(campaignService.findByCampaignTypeAndCampaignTypeId(CampaignType.PRODUCT, 5))
                 .thenReturn(Optional.of(campaign));
 
         List<BasketItem> calculatedItems = calculateDiscountService.calculateDiscount(items);
@@ -76,9 +78,9 @@ public class CalculateDiscountServiceTest {
         List<BasketItem> items = Stream.of(item).collect(Collectors.toList());
 
         Campaign campaign = new CampaignBuilder()
-                .withCampaignType("PRODUCT")
+                .withCampaignType(CampaignType.PRODUCT)
                 .withCampaignTypeId(5)
-                .withDiscountType("RATE")
+                .withDiscountType(DiscountType.RATE)
                 .withDiscount(10)
                 .withMaxDiscount(20)
                 .build();
@@ -90,7 +92,7 @@ public class CalculateDiscountServiceTest {
                 .withDiscountedPrice(BigDecimal.valueOf(90.89))
                 .build();
 
-        when(campaignService.findByCampaignTypeAndCampaignTypeId("PRODUCT", 5))
+        when(campaignService.findByCampaignTypeAndCampaignTypeId(CampaignType.PRODUCT, 5))
                 .thenReturn(Optional.of(campaign));
 
         List<BasketItem> calculatedItems = calculateDiscountService.calculateDiscount(items);
@@ -108,9 +110,9 @@ public class CalculateDiscountServiceTest {
         List<BasketItem> items = Stream.of(item).collect(Collectors.toList());
 
         Campaign campaign = new CampaignBuilder()
-                .withCampaignType("PRODUCT")
+                .withCampaignType(CampaignType.PRODUCT)
                 .withCampaignTypeId(5)
-                .withDiscountType("RATE")
+                .withDiscountType(DiscountType.RATE)
                 .withDiscount(10)
                 .withMaxDiscount(20)
                 .build();
@@ -122,7 +124,7 @@ public class CalculateDiscountServiceTest {
                 .withDiscountedPrice(BigDecimal.valueOf(380.99))
                 .build();
 
-        when(campaignService.findByCampaignTypeAndCampaignTypeId("PRODUCT", 5))
+        when(campaignService.findByCampaignTypeAndCampaignTypeId(CampaignType.PRODUCT, 5))
                 .thenReturn(Optional.of(campaign));
 
         List<BasketItem> calculatedItems = calculateDiscountService.calculateDiscount(items);
@@ -146,9 +148,9 @@ public class CalculateDiscountServiceTest {
         List<BasketItem> items = Stream.of(item1, item2).collect(Collectors.toList());
 
         Campaign campaign = new CampaignBuilder()
-                .withCampaignType("CATEGORY")
+                .withCampaignType(CampaignType.CATEGORY)
                 .withCampaignTypeId(7)
-                .withDiscountType("PRICE")
+                .withDiscountType(DiscountType.PRICE)
                 .withDiscount(50)
                 .build();
 
@@ -166,7 +168,7 @@ public class CalculateDiscountServiceTest {
                 .withDiscountedPrice(BigDecimal.valueOf(300.99))
                 .build();
 
-        when(campaignService.findByCampaignTypeAndCampaignTypeId("CATEGORY", 7))
+        when(campaignService.findByCampaignTypeAndCampaignTypeId(CampaignType.CATEGORY, 7))
                 .thenReturn(Optional.of(campaign));
 
         List<BasketItem> calculatedItems = calculateDiscountService.calculateDiscount(items);
@@ -185,16 +187,16 @@ public class CalculateDiscountServiceTest {
         List<BasketItem> items = Stream.of(item).collect(Collectors.toList());
 
         Campaign productCampaign = new CampaignBuilder()
-                .withCampaignType("PRODUCT")
+                .withCampaignType(CampaignType.PRODUCT)
                 .withCampaignTypeId(5)
-                .withDiscountType("PRICE")
+                .withDiscountType(DiscountType.PRICE)
                 .withDiscount(10)
                 .build();
 
         Campaign categoryCampaign = new CampaignBuilder()
-                .withCampaignType("CATEGORY")
+                .withCampaignType(CampaignType.CATEGORY)
                 .withCampaignTypeId(7)
-                .withDiscountType("PRICE")
+                .withDiscountType(DiscountType.PRICE)
                 .withDiscount(20)
                 .build();
 
@@ -205,10 +207,10 @@ public class CalculateDiscountServiceTest {
                 .withDiscountedPrice(BigDecimal.valueOf(50.99))
                 .build();
 
-        when(campaignService.findByCampaignTypeAndCampaignTypeId("PRODUCT", 5))
+        when(campaignService.findByCampaignTypeAndCampaignTypeId(CampaignType.PRODUCT, 5))
                 .thenReturn(Optional.of(productCampaign));
 
-        when(campaignService.findByCampaignTypeAndCampaignTypeId("CATEGORY", 7))
+        when(campaignService.findByCampaignTypeAndCampaignTypeId(CampaignType.CATEGORY, 7))
                 .thenReturn(Optional.of(categoryCampaign));
 
         List<BasketItem> calculatedItems = calculateDiscountService.calculateDiscount(items);

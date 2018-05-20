@@ -1,6 +1,7 @@
 package com.campaign.demo.validator;
 
 import com.campaign.demo.entity.Campaign;
+import com.campaign.demo.entity.DiscountType;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
@@ -8,7 +9,7 @@ import org.springframework.validation.Errors;
 public class MaxDiscountValidator {
 
     public void validate(Campaign campaign, Errors errors) {
-        if ("RATE".equalsIgnoreCase(campaign.getDiscountType())) {
+        if (DiscountType.RATE.equals(campaign.getDiscountType())) {
             if (campaign.getMaxDiscount() == null) {
                 errors.reject("Maximum discount is mandatory");
             } else if (campaign.getMaxDiscount() > 100) {

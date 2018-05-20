@@ -1,6 +1,7 @@
 package com.campaign.demo.service;
 
 import com.campaign.demo.entity.Campaign;
+import com.campaign.demo.entity.CampaignType;
 import com.campaign.demo.repository.CampaignRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class CampaignServiceImpl implements CampaignService {
     }
 
     @Override
-    public Optional<Campaign> findByCampaignTypeAndCampaignTypeId(String campaignType, Integer campaignTypeId) {
+    public Optional<Campaign> findByCampaignTypeAndCampaignTypeId(CampaignType campaignType, Integer campaignTypeId) {
         return campaignRepository.findByCampaignTypeAndCampaignTypeId(campaignType, campaignTypeId);
     }
 }

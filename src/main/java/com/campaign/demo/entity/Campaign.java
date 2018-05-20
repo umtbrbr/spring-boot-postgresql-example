@@ -22,8 +22,9 @@ public class Campaign implements Serializable {
     private String name;
 
     @NotNull(message = "Campaign type is mandatory")
+    @Enumerated(EnumType.STRING)
     @Column(name = "campaign_type")
-    private String campaignType;
+    private CampaignType campaignType;
 
     @NotNull(message = "Campaign type id is mandatory")
     @Column(name = "campaign_type_id")
@@ -34,8 +35,9 @@ public class Campaign implements Serializable {
     private String campaignTypeName;
 
     @NotNull(message = "Discount type is mandatory")
+    @Enumerated(EnumType.STRING)
     @Column(name = "discount_type")
-    private String discountType;
+    private DiscountType discountType;
 
     @NotNull(message = "Discount is mandatory")
     @Column(name = "discount")
@@ -63,11 +65,11 @@ public class Campaign implements Serializable {
         this.name = name;
     }
 
-    public String getCampaignType() {
+    public CampaignType getCampaignType() {
         return campaignType;
     }
 
-    public void setCampaignType(String campaignType) {
+    public void setCampaignType(CampaignType campaignType) {
         this.campaignType = campaignType;
     }
 
@@ -87,11 +89,11 @@ public class Campaign implements Serializable {
         this.campaignTypeName = campaignTypeName;
     }
 
-    public String getDiscountType() {
+    public DiscountType getDiscountType() {
         return discountType;
     }
 
-    public void setDiscountType(String discountType) {
+    public void setDiscountType(DiscountType discountType) {
         this.discountType = discountType;
     }
 
