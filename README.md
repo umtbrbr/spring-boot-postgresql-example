@@ -8,11 +8,11 @@ This project has 5 API as below.
 
 | Path | Method | Body Params | Request Params | Response | Description
 | --- | --- | --- | --- | --- | ---
-| /demo/campaigns | GET | | | [Campaign](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/dev/src/main/java/com/campaign/demo/entity/Campaign.java) | Returns all campaigns without any filter
-| /demo/campaign/create | POST | [Campaign](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/dev/src/main/java/com/campaign/demo/entity/Campaign.java) | | [Campaign](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/dev/src/main/java/com/campaign/demo/entity/Campaign.java) | Create a new campaign with given campaign details
-| /demo/campaign/update | PUT | [Campaign](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/dev/src/main/java/com/campaign/demo/entity/Campaign.java) | id | [Campaign](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/dev/src/main/java/com/campaign/demo/entity/Campaign.java) | Find campaign with given id and update that campaign 
-| /demo/campaign/delete | DELETE | | id | [Campaign](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/dev/src/main/java/com/campaign/demo/entity/Campaign.java) | Delete campaign with given campaign id
-| /demo/campaign/calculateDiscounts | POST | List<[BasketItem>](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/dev/src/main/java/com/campaign/demo/entity/BasketItem.java) | | List<[BasketItem>](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/dev/src/main/java/com/campaign/demo/entity/BasketItem.java) | Calculate discounts with using campaign of category or product
+| /demo/campaigns | GET | | | [Campaign](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/master/src/main/java/com/campaign/demo/entity/Campaign.java) | Returns all campaigns without any filter
+| /demo/campaign/create | POST | [Campaign](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/master/src/main/java/com/campaign/demo/entity/Campaign.java) | | [Campaign](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/master/src/main/java/com/campaign/demo/entity/Campaign.java) | Create a new campaign with given campaign details
+| /demo/campaign/update | PUT | [Campaign](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/master/src/main/java/com/campaign/demo/entity/Campaign.java) | id | [Campaign](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/master/src/main/java/com/campaign/demo/entity/Campaign.java) | Find campaign with given id and update that campaign 
+| /demo/campaign/delete | DELETE | | id | [Campaign](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/master/src/main/java/com/campaign/demo/entity/Campaign.java) | Delete campaign with given campaign id
+| /demo/campaign/calculateDiscounts | POST | List<[BasketItem>](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/master/src/main/java/com/campaign/demo/entity/BasketItem.java) | | List<[BasketItem>](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/master/src/main/java/com/campaign/demo/entity/BasketItem.java) | Calculate discounts with using campaign of category or product
 
 ## Run
 
