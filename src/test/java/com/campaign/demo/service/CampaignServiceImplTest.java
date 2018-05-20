@@ -1,5 +1,6 @@
 package com.campaign.demo.service;
 
+import com.campaign.demo.builder.CampaignBuilder;
 import com.campaign.demo.entity.Campaign;
 import com.campaign.demo.entity.CampaignType;
 import com.campaign.demo.entity.DiscountType;
@@ -7,6 +8,8 @@ import com.campaign.demo.repository.CampaignRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -28,6 +31,9 @@ public class CampaignServiceImplTest {
 
     @Mock
     private Campaign campaign;
+
+    @Captor
+    private ArgumentCaptor<Campaign> campaignCaptor;
 
     CampaignServiceImpl serviceImpl;
 
@@ -69,6 +75,28 @@ public class CampaignServiceImplTest {
         verify(campaignRepository, times(1)).deleteById(1);
     }
 
+    @Test
+    public void shouldUpdateCampaignWithGivenCampaign() {
+        Campaign givenCampaign = new CampaignBuilder()
+                .withCampaignId(1)
+                .withName("Ucuz Iphone")
+                .withCampaignType(CampaignType.PRODUCT)
+                .withCampaignTypeId(7)
+                .withCampaignTypeName("Apple Iphone 7 64 GB")
+                .withDiscountType(DiscountType.RATE)
+                .withDiscount(5)
+                .withMaxDiscount(100)
+                .build();
+
+        serviceImpl.saveCampaign(givenCampaign);
+
+        verify(campaignRepository).save(campaignCaptor.capture());
+        Campaign capturedCampaign = campaignCaptor.getValue();
+
+        assertThat(capturedCampaign.getDiscount(), is(5));
+        assertThat(capturedCampaign.getDiscountType(), is(DiscountType.RATE));
+    }
+
     private List<Campaign> generateMockCampaigns() {
         Campaign campaign = generateMockCampaign();
 
@@ -76,15 +104,16 @@ public class CampaignServiceImplTest {
     }
 
     private Campaign generateMockCampaign() {
-        Campaign campaign = new Campaign();
-        campaign.setCampaignId(1);
-        campaign.setName("Ucuz Iphone");
-        campaign.setCampaignType(CampaignType.PRODUCT);
-        campaign.setCampaignTypeId(7);
-        campaign.setCampaignTypeName("Apple Iphone 7 64 GB");
-        campaign.setDiscountType(DiscountType.RATE);
-        campaign.setDiscount(5);
-        campaign.setMaxDiscount(100);
+        Campaign campaign = new CampaignBuilder()
+                .withCampaignId(1)
+                .withName("Ucuz Iphone")
+                .withCampaignType(CampaignType.PRODUCT)
+                .withCampaignTypeId(7)
+                .withCampaignTypeName("Apple Iphone 7 64 GB")
+                .withDiscountType(DiscountType.RATE)
+                .withDiscount(5)
+                .withMaxDiscount(100)
+                .build();
 
         return campaign;
     }

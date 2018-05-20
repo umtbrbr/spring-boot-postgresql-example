@@ -28,7 +28,7 @@ public class CampaignBuilder {
     }
 
     public CampaignBuilder withCampaignTypeId(Integer campaignTypeId) {
-        campaign.setCampaignId(campaignTypeId);
+        campaign.setCampaignTypeId(campaignTypeId);
         return this;
     }
 
