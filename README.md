@@ -24,7 +24,7 @@ Create jar file with below maven command
 
 ### 2. Run app in docker container
 
-Execute.sh file. This .sh file provides pull and postgres image and connect this app to postgres by using --link flag
+Execute.sh file. This .sh file provides pull postgres image and connect this app to postgres by using --link flag
 
     ./docker.sh
     
@@ -37,7 +37,7 @@ This experiment project is using Postgres for data model. There are two sql file
 This app runs on 8888 port. The host address must be ip address of Docker where it is installed.
 
 
-_NOTE:_ I have commented [CampaignControllerTest](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/dev/src/test/java/com/campaign/demo/controller/CampaignContollerTest.java) out class. I'm getting unknown host exception when I build app with mvn clean install. The reason is that I set container name of postgres to application.properties as below. I could not find a solution so I had to commented it out for now.
+_NOTE:_ I have commented [CampaignControllerTest](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/master/src/test/java/com/campaign/demo/controller/CampaignContollerTest.java) out class. I'm getting unknown host exception when I build app with mvn clean install. The reason is that I set container name of postgres to application.properties as below. I could not find a solution so I had to commented it out for now.
 
     #spring.datasource.url=jdbc:postgresql://10.166.22.127:5432/postgres
     spring.datasource.url=jdbc:postgresql://postgres:5432/postgres
