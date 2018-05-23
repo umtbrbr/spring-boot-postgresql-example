@@ -24,9 +24,9 @@ Create jar file with below maven command
 
 ### 2. Run app in docker container
 
-Execute.sh file. This .sh file provides pull postgres image and connect this app to postgres by using --link flag
+Run and build a docker image with below docker-compose command
 
-    ./docker.sh
+    docker-compose up -d --build
     
 ### 3. Create tables and insert data
 
