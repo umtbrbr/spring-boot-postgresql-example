@@ -7,13 +7,13 @@
 	},
 	"item": [
 		{
-			"name": "http://10.166.22.127:8888/demo/campaigns",
+			"name": "http://localhost:8888/demo/campaigns",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://10.166.22.127:8888/demo/campaigns",
+					"raw": "http://localhost:8888/demo/campaigns",
 					"protocol": "http",
 					"host": [
 						"10",
@@ -32,7 +32,7 @@
 			"response": []
 		},
 		{
-			"name": "http://10.166.22.127:8888/demo/campaign/create",
+			"name": "http://localhost:8888/demo/campaign/create",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -46,7 +46,7 @@
 					"raw": "    {\n        \"name\": \"Kırmızı Kazak İndirim\",\n        \"campaignType\": \"PRODUCT\",\n        \"campaignTypeId\": 4,\n        \"campaignTypeName\": \"Kenzo Kırmızı Kazak\",\n        \"discountType\": \"RATE\",\n        \"discount\": 10,\n        \"maxDiscount\": 30\n    }"
 				},
 				"url": {
-					"raw": "http://10.166.22.127:8888/demo/campaign/create",
+					"raw": "http://localhost:8888/demo/campaign/create",
 					"protocol": "http",
 					"host": [
 						"10",
@@ -66,7 +66,7 @@
 			"response": []
 		},
 		{
-			"name": "http://10.166.22.127:8888/demo/campaign/update?id=7",
+			"name": "http://localhost:8888/demo/campaign/update?id=7",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -80,7 +80,7 @@
 					"raw": "    {\n        \"name\": \"Kırmızı Kazak İndirim\",\n        \"campaignType\": \"PRODUCT\",\n        \"campaignTypeId\": 4,\n        \"campaignTypeName\": \"Kenzo Kırmızı Kazak\",\n        \"discountType\": \"RATE\",\n        \"discount\": 15,\n        \"maxDiscount\": 35\n    }"
 				},
 				"url": {
-					"raw": "http://10.166.22.127:8888/demo/campaign/update?id=7",
+					"raw": "http://localhost:8888/demo/campaign/update?id=7",
 					"protocol": "http",
 					"host": [
 						"10",
@@ -107,7 +107,7 @@
 			"response": []
 		},
 		{
-			"name": "http://10.166.22.127:8888/demo/campaign/delete?id=7",
+			"name": "http://localhost:8888/demo/campaign/delete?id=7",
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -121,7 +121,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://10.166.22.127:8888/demo/campaign/delete?id=7",
+					"raw": "http://localhost:8888/demo/campaign/delete?id=7",
 					"protocol": "http",
 					"host": [
 						"10",
@@ -148,7 +148,7 @@
 			"response": []
 		},
 		{
-			"name": "http://10.166.22.127:8888/demo/campaign/calculateDiscounts",
+			"name": "http://localhost:8888/demo/campaign/calculateDiscounts",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -162,7 +162,7 @@
 					"raw": "[\n\t{\n        \"productId\": 7,\n        \"categoryId\": 1,\n        \"price\": 500\n    },\n    {\n        \"productId\": 2,\n        \"categoryId\": 3,\n        \"price\": 100\n    }\n]"
 				},
 				"url": {
-					"raw": "http://10.166.22.127:8888/demo/campaign/calculateDiscounts",
+					"raw": "http://localhost:8888/demo/campaign/calculateDiscounts",
 					"protocol": "http",
 					"host": [
 						"10",
