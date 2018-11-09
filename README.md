@@ -30,8 +30,8 @@ Execute.sh file. This .sh file provides pull postgres image and connect this app
     
 ### 3. Create tables and insert data
 
-This experiment project is using Postgres for data model. There are two sql files under `src/main/resources` directory. Schema and tables can create with `create_table.sql` and initialize data can insert with `insert_data.sql` where the Docker is installed.
+This experiment project is using Postgres for data model. There are two sql files under `src/main/resources` directory. Schema and tables can create with [create_table.sql](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/master/src/main/resources/create_table.sql) and initialize data can insert with [insert_data.sql](https://github.com/umtbrbr/spring-boot-postgresql-example/blob/master/src/main/resources/insert_data.sql)
 
 ### 4. Test
 
-This app runs on 8888 port. The host address must be ip address of Docker where it is installed.
+This app runs on 8888 port.
