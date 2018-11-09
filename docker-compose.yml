@@ -1,0 +1,22 @@
+version : '3'
+
+services:
+  spring-boot-postgresql-example:
+    build: .
+    image: "spring-boot-app:1.0.0"
+    container_name: spring-boot-app
+    restart: always
+    ports:
+      - 8888:8888
+    links:
+      - postgres
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
