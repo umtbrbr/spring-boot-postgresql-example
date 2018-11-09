@@ -42,7 +42,7 @@ public class CampaignController {
         return new ResponseEntity<>(campaigns, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/campaign/create")
+    @PostMapping(value = "/campaign")
     public ResponseEntity<Campaign> createCampaign(@Valid @RequestBody Campaign campaign, Errors errors) {
         maxDiscountValidator.validate(campaign, errors);
         if (errors.hasErrors()) {
@@ -55,7 +55,7 @@ public class CampaignController {
         return new ResponseEntity<>(createCampaign, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/campaign/update")
+    @PutMapping(value = "/campaign")
     public ResponseEntity<Campaign> updateCampaign(@RequestParam("id") Integer campaignId, @Valid @RequestBody Campaign campaignDetails, Errors errors) {
         Optional<Campaign> campaign = campaignService.getCampaign(campaignId);
         if (!campaign.isPresent()) {
@@ -85,7 +85,7 @@ public class CampaignController {
         return response;
     }
 
-    @DeleteMapping(value = "/campaign/delete")
+    @DeleteMapping(value = "/campaign")
     public ResponseEntity<Campaign> deleteCampaign(@RequestParam("id") Integer campaignId) {
         Optional<Campaign> campaign = campaignService.getCampaign(campaignId);
         if (!campaign.isPresent()) {

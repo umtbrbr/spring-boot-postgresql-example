@@ -70,7 +70,7 @@ public class CampaignContollerTest {
     public void testCreateCampaignStatusBadRequestWhenDiscountTypeIsRateAndBodyDoesNotIncludeMaxDiscount() throws Exception {
         String campaign = "{\"campaignId\":1,\"name\":\"Ucuz Iphone\",\"campaignType\":\"PRODUCT\",\"campaignTypeId\":7,\"campaignTypeName\":\"Apple Iphone 7 64 GB\",\"discountType\":\"RATE\",\"discount\":5}";
 
-        mockMvc.perform(post("/demo/campaign/create").contentType(MediaType.APPLICATION_JSON).content(campaign))
+        mockMvc.perform(post("/demo/campaign").contentType(MediaType.APPLICATION_JSON).content(campaign))
                 .andExpect(status().isBadRequest());
     }
 
@@ -78,7 +78,7 @@ public class CampaignContollerTest {
     public void testCreateCampaignStatusOkWhenDiscountTypeIsPriceAndBodyDoesNotNeedIncludeMaxDiscount() throws Exception {
         String campaign = "{\"campaignId\":1,\"name\":\"Ucuz Iphone\",\"campaignType\":\"PRODUCT\",\"campaignTypeId\":7,\"campaignTypeName\":\"Apple Iphone 7 64 GB\",\"discountType\":\"PRICE\",\"discount\":5}";
 
-        mockMvc.perform(post("/demo/campaign/create").contentType(MediaType.APPLICATION_JSON).content(campaign))
+        mockMvc.perform(post("/demo/campaign").contentType(MediaType.APPLICATION_JSON).content(campaign))
                 .andExpect(status().isOk());
     }
 
@@ -96,6 +96,6 @@ public class CampaignContollerTest {
                 .build();
         when(campaignService.getCampaign(1)).thenReturn(Optional.of(campaign));
 
-        mockMvc.perform(delete("/demo/campaign/delete?id=1")).andExpect(status().isNoContent());
+        mockMvc.perform(delete("/demo/campaign?id=1")).andExpect(status().isNoContent());
     }
 }
