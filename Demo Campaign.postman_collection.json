@@ -7,29 +7,30 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8888/demo/campaigns",
+			"name": "http://localhost:8888/api/v1/campaigns",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8888/demo/campaigns",
+					"raw": "http://localhost:8888/api/v1/campaigns",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8888",
 					"path": [
-						"demo",
+						"api",
+						"v1",
 						"campaigns"
 					]
 				},
-				"description": ""
+				"description": "Returns all campaigns without any filter"
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:8888/demo/campaign",
+			"name": "http://localhost:8888/api/v1/campaigns",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -43,15 +44,16 @@
 					"raw": "    {\n        \"name\": \"Kırmızı Kazak İndirim\",\n        \"campaignType\": \"PRODUCT\",\n        \"campaignTypeId\": 4,\n        \"campaignTypeName\": \"Kenzo Kırmızı Kazak\",\n        \"discountType\": \"RATE\",\n        \"discount\": 10,\n        \"maxDiscount\": 30\n    }"
 				},
 				"url": {
-					"raw": "http://localhost:8888/demo/campaign",
+					"raw": "http://localhost:8888/api/v1/campaigns",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8888",
 					"path": [
-						"demo",
-						"campaign"
+						"api",
+						"v1",
+						"campaigns"
 					]
 				},
 				"description": "Create a new campaign"
@@ -59,7 +61,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8888/demo/campaign?id=5",
+			"name": "http://localhost:8888/api/v1/campaigns?id=5",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -70,37 +72,34 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "    {\n        \"name\": \"Kırmızı Kazak İndirim\",\n        \"campaignType\": \"PRODUCT\",\n        \"campaignTypeId\": 4,\n        \"campaignTypeName\": \"Kenzo Kırmızı Kazak\",\n        \"discountType\": \"RATE\",\n        \"discount\": 15,\n        \"maxDiscount\": 35\n    }"
+					"raw": "    {\n        \"name\": \"Kırmızı Kazak İndirimm\",\n        \"campaignType\": \"PRODUCT\",\n        \"campaignTypeId\": 4,\n        \"campaignTypeName\": \"Kenzo Kırmızı Kazak\",\n        \"discountType\": \"RATE\",\n        \"discount\": 15,\n        \"maxDiscount\": 35\n    }"
 				},
 				"url": {
-					"raw": "http://10.166.22.127:8888/demo/campaign/update?id=7",
+					"raw": "http://localhost:8888/api/v1/campaigns?id=5",
 					"protocol": "http",
 					"host": [
-						"10",
-						"166",
-						"22",
-						"127"
+						"localhost"
 					],
 					"port": "8888",
 					"path": [
-						"demo",
-						"campaign",
-						"update"
+						"api",
+						"v1",
+						"campaigns"
 					],
 					"query": [
 						{
 							"key": "id",
-							"value": "7",
+							"value": "5",
 							"equals": true
 						}
 					]
 				},
-				"description": "Update campaign"
+				"description": "Update campaign with id"
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:8888/demo/campaign?id=5",
+			"name": "http://localhost:8888/api/v1/campaigns?id=5",
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -114,24 +113,21 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://10.166.22.127:8888/demo/campaign/delete?id=7",
+					"raw": "http://localhost:8888/api/v1/campaigns?id=5",
 					"protocol": "http",
 					"host": [
-						"10",
-						"166",
-						"22",
-						"127"
+						"localhost"
 					],
 					"port": "8888",
 					"path": [
-						"demo",
-						"campaign",
-						"delete"
+						"api",
+						"v1",
+						"campaigns"
 					],
 					"query": [
 						{
 							"key": "id",
-							"value": "7",
+							"value": "5",
 							"equals": true
 						}
 					]
@@ -141,7 +137,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8888/demo/campaign/calculateDiscounts",
+			"name": "http://localhost:8888/api/v1/campaigns/calculateDiscounts",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -155,15 +151,16 @@
 					"raw": "[\n\t{\n        \"productId\": 7,\n        \"categoryId\": 1,\n        \"price\": 500\n    },\n    {\n        \"productId\": 2,\n        \"categoryId\": 3,\n        \"price\": 100\n    }\n]"
 				},
 				"url": {
-					"raw": "http://localhost:8888/demo/campaign/calculateDiscounts",
+					"raw": "http://localhost:8888/api/v1/campaigns/calculateDiscounts",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8888",
 					"path": [
-						"demo",
-						"campaign",
+						"api",
+						"v1",
+						"campaigns",
 						"calculateDiscounts"
 					]
 				},
