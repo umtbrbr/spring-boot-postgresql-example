@@ -24,7 +24,7 @@ Create jar file with below maven command
 
 ### 2. Run app in docker container
 
-Run and build a docker image with below docker-compose command
+Build and run a docker image with below docker-compose command
 
     docker-compose up -d --build
     
